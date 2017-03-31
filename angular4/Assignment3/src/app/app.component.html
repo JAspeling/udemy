@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div class="row">
+    <h1>
+      {{title}}
+    </h1>
+
+
+    <button type="button" class="btn btn-primary" (click)="toggleDetails()">Toggle Details</button>
+    <p *ngIf="displayDetails">Hashed Password is {{password}}</p>
+  </div>
+
+  <div *ngIf="contents">
+    <div *ngFor="let content of contents">
+      <p [ngStyle]="{'background-color': contents.length > 4 ? 'blue' : 'white'}" 
+        [ngClass]="{'five' : contents.length > 4 ? true : false}">{{content.getInfo()}}</p>
+    </div>
+  </div>
+</div>
