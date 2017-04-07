@@ -12,7 +12,11 @@ export class RecipeListComponent implements OnInit {
     new Recipe("Test Recipe", "This is asimply a test", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Recipe_logo.jpeg/480px-Recipe_logo.jpeg")
   ]; 
   
-  constructor() { }
+  constructor() { 
+    var test = "";
+    var test2 = test;
+
+  }
 
   ngOnInit() {
   }
