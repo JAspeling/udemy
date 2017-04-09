@@ -1,0 +1,23 @@
+body{
+    font-family: 'Segoe UI Light';
+}
+
+.feedback {
+    width: 100%;
+    font-weight: bolder;
+    border: 1px solid;
+    padding: 0.5em;
+    border-radius: 0.4em;
+}
+
+.even {
+    color: whitesmoke;
+    border-color: blue;
+    background-color: #337ab7;
+}
+
+.odd {
+    color:whitesmoke;
+    border-color: #eea236;
+    background-color: #f0ad4e;
+}

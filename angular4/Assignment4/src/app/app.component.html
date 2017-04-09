@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Assignment 4</h1>
+  <app-game-control (gameNotifier)=onGameNotified($event)></app-game-control>
+  <div *ngIf="game && game.state !== 0">
+    <app-odd *ngIf="game.interval % 2 !== 0" [interval]="game.interval"></app-odd>
+    <app-even *ngIf="game.interval % 2 === 0" [interval]="game.interval"></app-even>
+  </div>
+</div>
