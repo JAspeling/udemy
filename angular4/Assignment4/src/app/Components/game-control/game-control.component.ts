@@ -18,6 +18,8 @@ export class GameControlComponent implements OnInit {
     console.log(this.game.state);
   }
 
+  // Starts the game, if it isnt already started (Dont want another instance 
+  // of the SetInterval to be used!)
   StartGame() {
     if (this.game && this.game.state !== GameState.Started) {
       this.game.state = GameState.Started;
@@ -25,11 +27,13 @@ export class GameControlComponent implements OnInit {
     }
   }
 
+  // Pause the game if it isnt already paused
   PauseGame() {
     this.game.Pause();
     clearTimeout(this.gameTimer);
   }
 
+  // Stops the game and resets the Game Object
   StopGame() {
     clearTimeout(this.gameTimer);
     // Resets the Game state to its initial state

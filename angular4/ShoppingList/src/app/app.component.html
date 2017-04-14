@@ -1,10 +1,10 @@
-<app-header></app-header>
+<app-header (selectFeature)="onChangeFeature($event)"></app-header>
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-recipes></app-recipes>
-      <app-shoppinglist></app-shoppinglist>
+      <app-recipes *ngIf="currentFeature === 'Recipes'"></app-recipes>
+      <app-shoppinglist *ngIf="currentFeature === 'Shopping-List'"></app-shoppinglist>
     </div>
   </div>
 </div>

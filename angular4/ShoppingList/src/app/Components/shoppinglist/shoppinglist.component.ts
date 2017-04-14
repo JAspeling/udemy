@@ -17,4 +17,26 @@ export class ShoppinglistComponent implements OnInit {
   ngOnInit() {
   }
 
+  public onIngredientAdded(ingredient: Ingredient): void {
+    if (ingredient) {
+      var foundIngredient = this.ingredients.find(i => i.name.toLowerCase() === ingredient.name.toLowerCase());
+      if (foundIngredient) {
+        foundIngredient.amount += ingredient.amount;
+      } else
+        this.ingredients.push(ingredient);
+    }
+  }
+
+  public onIngredientRemovedEvent(ingredientName : string) : void {
+    if (ingredientName){
+      var foundIngredient = this.ingredients.find(i => i.name.toLowerCase() === ingredientName.toLowerCase());
+      if (foundIngredient){
+        this.ingredients.splice(this.ingredients.indexOf(foundIngredient), 1);
+      }
+    }
+  }
+
+  public onClearIngredientsEvent() : void {
+    this.ingredients = [];
+  }
 }
