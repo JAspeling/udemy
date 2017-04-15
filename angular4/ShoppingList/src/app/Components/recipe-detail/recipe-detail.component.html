@@ -13,19 +13,18 @@
       <h1>{{recipe.name}}</h1>
     </div>
   </div>
-
-
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle">
-      Manage Recipe <span class="caret"></span></button>
+      <div appDropdown class="btn-group">
+        <button type="button" 
+          class="btn btn-primary dropdown-toggle">
+          Manage Recipe <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="#">To Shopping List</a></li>
+          <li><a href="#">Edit Recipe</a></li>
+          <li><a href="#">Delete Recipe</a></li>
+        </ul>
       </div>
-      <ul class="dropdown-menu">
-        <li href="#" Add>To Shopping List</li>
-        <li href="#" Add>Edit Recipe</li>
-        <li href="#" Add>Delete Recipe</li>
-      </ul>
     </div>
   </div>
   <div class="row">
