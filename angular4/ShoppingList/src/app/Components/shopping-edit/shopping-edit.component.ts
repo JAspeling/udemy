@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, EventEmitter, Output, ElementRef } from '@angular/core';
-import { Ingredient } from "app/Classes/Ingredient.model";
+import { Ingredient } from "app/Classes/ingredient.model";
+import { ShoppingListService } from "app/services/shoppinglist.service";
 
 @Component({
   selector: 'app-shopping-edit',
@@ -10,33 +11,32 @@ export class ShoppingEditComponent implements OnInit {
   @ViewChild('nameInput') ingredientName: ElementRef;
   @ViewChild('amountInput') amount: ElementRef;
 
-  @Output() ingredientAddedEvent = new EventEmitter<Ingredient>();
   @Output() ingredientRemovedEvent = new EventEmitter<string>();
   @Output() clearIngredientsEvent = new EventEmitter<void>();
 
-  constructor() { }
+  constructor( private shoppinglistService : ShoppingListService ) { }
 
   ngOnInit() {
   }
 
   addIngredient(): void {
-    let name: string = (this.ingredientName.nativeElement as HTMLInputElement).value;
-    let amount: number = +(this.amount.nativeElement as HTMLInputElement).value;
+    const name: string = (this.ingredientName.nativeElement as HTMLInputElement).value;
+    const amount: number = +(this.amount.nativeElement as HTMLInputElement).value;
 
     if ((name && name.trim() != "") && amount != 0) {
-      let ingredient = new Ingredient(name, amount);
-      this.ingredientAddedEvent.emit(ingredient);
+      const ingredient = new Ingredient(name, amount);
+      this.shoppinglistService.addIngredient(ingredient);
     }
   }
 
   public removeIngredient(): void {
     let name: string = (this.ingredientName.nativeElement as HTMLInputElement).value;
-    this.ingredientRemovedEvent.emit(name);
-
+    this.shoppinglistService.removeIngredient(name);
+    // Clear the text box
     (this.ingredientName.nativeElement as HTMLInputElement).value = "";
   }
 
   public clearIngredients() {
-    this.clearIngredientsEvent.emit();
+    this.shoppinglistService.clearIngredients();
   }
 }

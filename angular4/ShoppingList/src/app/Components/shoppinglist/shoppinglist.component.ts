@@ -1,3 +1,4 @@
+import { ShoppingListService } from '../../services/shoppinglist.service';
 import { Component, OnInit } from '@angular/core';
 import { Ingredient } from "app/Classes/Ingredient.model";
 
@@ -6,37 +7,17 @@ import { Ingredient } from "app/Classes/Ingredient.model";
   templateUrl: './shoppinglist.component.html',
   styleUrls: ['./shoppinglist.component.css']
 })
-export class ShoppinglistComponent implements OnInit {
-  ingredients: Ingredient[] = [
-    new Ingredient("Apples", 5),
-    new Ingredient("Tomatoes", 10)
-
-  ];
-  constructor() { }
+export class ShoppingListComponent implements OnInit {
+  ingredients : Ingredient[];
+  
+  constructor( private shoppingListService : ShoppingListService ) { }
 
   ngOnInit() {
-  }
-
-  public onIngredientAdded(ingredient: Ingredient): void {
-    if (ingredient) {
-      var foundIngredient = this.ingredients.find(i => i.name.toLowerCase() === ingredient.name.toLowerCase());
-      if (foundIngredient) {
-        foundIngredient.amount += ingredient.amount;
-      } else
-        this.ingredients.push(ingredient);
-    }
-  }
-
-  public onIngredientRemovedEvent(ingredientName : string) : void {
-    if (ingredientName){
-      var foundIngredient = this.ingredients.find(i => i.name.toLowerCase() === ingredientName.toLowerCase());
-      if (foundIngredient){
-        this.ingredients.splice(this.ingredients.indexOf(foundIngredient), 1);
+    this.ingredients = this.shoppingListService.getIngredients();
+    this.shoppingListService.ingredientChanged.subscribe(
+      (ingredients : Ingredient[]) => {
+        this.ingredients = ingredients;
       }
-    }
-  }
-
-  public onClearIngredientsEvent() : void {
-    this.ingredients = [];
+    )
   }
 }
