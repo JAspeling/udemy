@@ -1,11 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { AccountComponent } from './account/account.component';
+import { AppComponent } from './app.component';
+import { NewAccountComponent } from './new-account/new-account.component';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { AccountsService } from 'app/account.service';
+import { LoggingService } from 'app/logging.service';
 
-import { AppComponent } from './app.component';
-import { AccountComponent } from './account/account.component';
-import { NewAccountComponent } from './new-account/new-account.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,7 @@ import { NewAccountComponent } from './new-account/new-account.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [LoggingService, AccountsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
